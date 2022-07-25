@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/dclaramount/Projects/Practice_Diego/Diego_Practice/Diego_Practice/Diego_Practice.csproj",
+      "projectUniqueName": "/Users/dclaramount/Projects/Practice_Diego/Diego_Practice/Diego_Practice.csproj",
       "projectName": "Diego_Practice",
-      "projectPath": "/Users/dclaramount/Projects/Practice_Diego/Diego_Practice/Diego_Practice/Diego_Practice.csproj",
+      "projectPath": "/Users/dclaramount/Projects/Practice_Diego/Diego_Practice/Diego_Practice.csproj",
       "packagesPath": "/Users/dclaramount/.nuget/packages/",
-      "outputPath": "/Users/dclaramount/Projects/Practice_Diego/Diego_Practice/Diego_Practice/obj/",
+      "outputPath": "/Users/dclaramount/Projects/Practice_Diego/Diego_Practice/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/dclaramount/.nuget/NuGet/NuGet.Config"
