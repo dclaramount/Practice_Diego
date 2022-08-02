@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Xml.Linq;
 namespace Diego_Practice
@@ -36,7 +38,7 @@ namespace Diego_Practice
 
         In your solution, focus on correctness.The performance of your solution will not be the focus of the assessment. */
         //OBSERVATION NEED TO TAKE IN TO ACCOUNT EMPTY ARRAYS AND OVERSIZE REQUESTS !!!!!
-        public static int[] Excercise(int[] enteredArray, int numberOfMovements)
+        public static int[] CyclicRotation(int[] enteredArray, int numberOfMovements)
         {
             int length = enteredArray.Length;
             int[] result = new int[length];
@@ -64,6 +66,76 @@ namespace Diego_Practice
                 }
             }
             return result;
+        }
+        /*  A non-empty array A consisting of N integers is given.The array contains an odd number of elements, 
+            and each element of the array can be paired with another element that has the same value, except for 
+            one element that is left unpaired.
+            For example, in array A such that:
+            A[0] = 9  A[1] = 3  A[2] = 9
+            A[3] = 3  A[4] = 9  A[5] = 7
+            A[6] = 9
+            the elements at indexes 0 and 2 have value 9,
+            the elements at indexes 1 and 3 have value 3,
+            the elements at indexes 4 and 6 have value 9,
+            the element at index 5 has value 7 and is unpaired.
+            Write a function:
+            class Solution { public int solution(int[] A); }
+            that, given an array A consisting of N integers fulfilling the above conditions, returns the value of
+            the unpaired element.
+
+            For example, given array A such that:
+
+            A[0] = 9  A[1] = 3  A[2] = 9
+            A[3] = 3  A[4] = 9  A[5] = 7
+            A[6] = 9
+        
+            the function should return 7, as explained in the example above.
+            Write an efficient algorithm for the following assumptions:
+
+            N is an odd integer within the range [1..1,000,000];
+            each element of array A is an integer within the range[1..1, 000, 000, 000];
+            all but one of the values in A occur an even number of times.
+        */
+        public static int OddOcurrencesInArray(int[] Array)
+        {
+            var test = Array.GroupBy(grp => grp).Select(grp => new
+            {
+                Value = grp.Key,
+                Count = grp.Count()
+            });
+
+            var result = test.Where(element => element.Count % 2 > 0).FirstOrDefault();
+
+            return result.Value;
+        }
+
+        public static int OddOcurrencesInArray_woLINQ(int[] Array)
+        {
+            Dictionary<int, int> result = new Dictionary<int, int>();
+            for (int i=0; i<Array.Length;i++)
+            {
+                if (result.ContainsKey(Array[i]))
+                {
+                    result[Array[i]] = result[Array[i]] +1 ;
+                    if (result[Array[i]] % 2 == 0)
+                    {
+                        result.Remove(Array[i]);
+                    }
+                }
+                else
+                {
+                    result[Array[i]] = 1;
+                }
+            }
+            var key = result.Keys;
+            int answer = 0;
+            foreach (var k in key)
+            {
+                answer = k;
+                break;
+            }
+
+            return answer;
         }
     }
 }
