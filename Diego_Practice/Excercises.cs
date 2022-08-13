@@ -65,14 +65,14 @@ namespace Diego_Practice
             entry.Add(BIT1);
             entry.Add(BIT2);
             entry.Add(BIT3);
-            
+
             foreach (string BIT in entry)
             {
                 var _aBIT = BIT.ToArray();
                 var _combinations = Array.FindAll(_aBIT, element => element == '0').Count();
                 if (_combinations == 0)
                 {
-                    result.Add(Convert.ToInt32(new string(BIT1), 2));
+                    result.Add(Convert.ToInt32(new string(BIT), 2));
                     continue;
                 }
 
@@ -81,10 +81,10 @@ namespace Diego_Practice
                     var number = BIT.ToArray();
                     string BITnumbtry = Convert.ToString(Convert.ToInt32(i), 2);
                     var index = number.Length;
-                    for (int subindex =0; subindex < BITnumbtry.Length; subindex++)
+                    for (int subindex = 0; subindex < BITnumbtry.Length; subindex++)
                     {
-                        index = Array.LastIndexOf(number , '0', index-1) ;
-                        number[index] = BITnumbtry.ToArray()[BITnumbtry.Length-1-subindex];
+                        index = Array.LastIndexOf(number, '0', index - 1);
+                        number[index] = BITnumbtry.ToArray()[BITnumbtry.Length - 1 - subindex];
                     }
                     var number_ = Convert.ToInt32(new string(number), 2);
                     Console.WriteLine(number_);
@@ -95,7 +95,55 @@ namespace Diego_Practice
             var test = result.Count();
             return (result.Count());
         }
-    }
-}
 
-;
+        /*
+
+            A positive integer N is given. The goal is to find the highest power of 2 that divides N.
+            In other words, we have to find the maximum K for which N modulo 2^K is 0.
+
+            For example, given integer N = 24 the answer is 3, because 2^3 = 8 is the highest
+            power of 2 that divides N.
+
+            Write a function:
+
+            class Solution { public int solution(int N); }
+
+            that, given a positive integer N, returns the highest power of 2 that divides N.
+            For example, given integer N = 24, the function should return 3, as explained above.
+
+            Assume that:
+
+            N is an integer within the range [1..1,000,000,000].
+
+            In your solution, focus on correctness. The performance of your solution will not be the focus
+            of the assessment.
+        */
+        public static int Problem1(int N)
+        {
+            if (N == 1)
+            {
+                return 0;
+            }
+            var max = Math.Truncate(Math.Sqrt(N));
+            int result =0;
+            while (max>0)
+            {
+                var left = N % Math.Pow(2, max);
+                if ( left > 0)
+                {
+                    max--;
+                    continue;
+                }
+                else
+                {
+                    result = Convert.ToInt32(max);
+                    break;
+                }
+                    
+            }
+            return result;
+        }
+    }
+
+
+}
